@@ -1,3 +1,5 @@
+//Pedro Felipe Ataide de Almeida - Código
+
 async function connect(){
 
     if(global.connection)

@@ -1,3 +1,5 @@
+//Pedro Felipe Ataide de Almeida - Código
+
 //carrega as configurações do arquivo .env para a memória
 require("dotenv").config();
 
