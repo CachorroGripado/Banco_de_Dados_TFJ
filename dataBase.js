@@ -45,8 +45,24 @@ async function insertPessoa(pessoa){
     // tiramos res. e return porque o insert não retornada nada 
 }
 
+async function updatePessoa(id,pessoa){
+    const client = await connect();
+    const sql = "UPDATE pessoas SET nome=$1,cpf=$2,data_nascimento=$3,telefone=$4,endereco=$5,altura=$6,peso=$7 WHERE id=$8";
+    const values = [pessoa.nome, pessoa.cpf, pessoa.data_nascimento, pessoa.telefone, pessoa.endereco, pessoa.altura, pessoa.peso, id];
+    await client.query(sql,values);    
+}
+
+async function deletePessoa(id){
+    const client = await connect();
+    const sql = "DELETE FROM pessoas WHERE id=$1";
+    const values = [id];
+    await client.query(sql,values);    
+}
+
 module.exports = {
     selectPessoas,
     selectPessoa,
-    insertPessoa
+    insertPessoa,
+    updatePessoa,
+    deletePessoa
 }

@@ -31,8 +31,21 @@ app.get("/pessoas", async (req, res)=> {
 
 app.post("/pessoas", async (req, res)=> {
     await dataBase.insertPessoa(req.body);
-    res.sendStatus(201);//retorna status HTTP como sucesso em cadastrar
+    res.sendStatus(201);//retorna status HTTP com sucesso em cadastrar
 })
+
+app.patch("/pessoas/:id", async (req, res)=> {
+    //req.params.id é usado para pegar o id na url
+    //req.body é usado para pegar os dados da pessoa no corpo da requisição
+    await dataBase.updatePessoa(req.params.id, req.body);
+    res.sendStatus(200);//retorna status HTTP com sucesso em editar
+})
+
+app.delete("/pessoas/:id", async (req, res)=> {
+    await dataBase.deletePessoa(req.params.id);
+    res.sendStatus(204);
+})
+
 //cria aplicação web
 app.listen(port);
 console.log("Backend rodando...");
